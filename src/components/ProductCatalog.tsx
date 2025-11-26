@@ -222,7 +222,7 @@ const ProductCatalog = ({ category, onContinue }: ProductCatalogProps) => {
                   <h3 className="font-semibold text-lg mb-2 text-foreground min-h-[3rem]">
                     {product.name}
                   </h3>
-                  <p className="text-2xl font-bold text-primary mb-4">{product.price} ₱</p>
+                  <p className="text-2xl font-bold text-primary mb-4">{product.price} DT</p>
                   {totalQuantity > 0 ? (
                     <div className="space-y-2">
                       {cartItems.map((cartItem) => (
@@ -296,7 +296,7 @@ const ProductCatalog = ({ category, onContinue }: ProductCatalogProps) => {
               </div>
               <div>
                 <p className="text-sm opacity-90">Preview cart</p>
-                <p className="text-xl font-bold">{getTotalPrice()} ₱</p>
+                <p className="text-xl font-bold">{getTotalPrice()} DT</p>
               </div>
             </div>
             <Button

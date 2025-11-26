@@ -122,7 +122,7 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="delivery" id="delivery" />
                     <Label htmlFor="delivery" className="font-normal cursor-pointer">
-                      Livraison (+7 ₱)
+                      Livraison (+7 DT)
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -149,7 +149,7 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
               )}
 
               <Button type="submit" className="w-full" size="lg">
-                Place Order - {getTotalPrice()} ₱
+                Place Order - {getTotalPrice()} DT
               </Button>
             </form>
           </Card>
@@ -163,24 +163,24 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
                     <span className="text-foreground">
                       {item.name} x{item.quantity}
                     </span>
-                    <span className="font-semibold text-foreground">{item.price * item.quantity} ₱</span>
+                    <span className="font-semibold text-foreground">{item.price * item.quantity} DT</span>
                   </div>
                 ))}
               </div>
               <div className="border-t pt-3 mt-3 space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Subtotal</span>
-                  <span className="text-foreground">{getSubtotal()} ₱</span>
+                  <span className="text-foreground">{getSubtotal()} DT</span>
                 </div>
                 {deliveryMethod === "delivery" && (
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Livraison</span>
-                    <span className="text-foreground">{DELIVERY_FEE} ₱</span>
+                    <span className="text-foreground">{DELIVERY_FEE} DT</span>
                   </div>
                 )}
                 <div className="flex justify-between text-lg font-bold pt-2 border-t">
                   <span className="text-foreground">Total</span>
-                  <span className="text-primary">{getTotalPrice()} ₱</span>
+                  <span className="text-primary">{getTotalPrice()} DT</span>
                 </div>
               </div>
             </Card>

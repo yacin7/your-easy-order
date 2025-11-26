@@ -69,7 +69,7 @@ const ProductDialog = ({ product, open, onClose, onAddToCart }: ProductDialogPro
             {product.name}
           </DialogTitle>
           <p className="text-3xl font-bold text-primary mt-2">
-            {product.price} ₱
+            {product.price} DT
           </p>
         </DialogHeader>
 
@@ -102,7 +102,7 @@ const ProductDialog = ({ product, open, onClose, onAddToCart }: ProductDialogPro
                     </div>
                     {variant.priceModifier !== 0 && (
                       <span className="text-muted-foreground">
-                        +{variant.priceModifier} ₱
+                        +{variant.priceModifier} DT
                       </span>
                     )}
                   </div>
@@ -133,7 +133,7 @@ const ProductDialog = ({ product, open, onClose, onAddToCart }: ProductDialogPro
 
             <div className="text-right">
               <p className="text-sm text-muted-foreground">Total</p>
-              <p className="text-2xl font-bold text-primary">{getTotalPrice()} ₱</p>
+              <p className="text-2xl font-bold text-primary">{getTotalPrice()} DT</p>
             </div>
           </div>
 
