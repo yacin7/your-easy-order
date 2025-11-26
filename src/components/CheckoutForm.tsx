@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 
 interface CartItem {
@@ -27,17 +28,30 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
     phone: "",
     address: "",
   });
+  const [deliveryMethod, setDeliveryMethod] = useState<"delivery" | "pickup">("delivery");
+
+  const DELIVERY_FEE = 7;
+
+  const getSubtotal = () => {
+    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  };
 
   const getTotalPrice = () => {
-    return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const subtotal = getSubtotal();
+    return deliveryMethod === "delivery" ? subtotal + DELIVERY_FEE : subtotal;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation simple
-    if (!formData.name || !formData.email || !formData.phone || !formData.address) {
-      toast.error("Please fill in all fields");
+    if (!formData.name || !formData.email || !formData.phone) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    if (deliveryMethod === "delivery" && !formData.address) {
+      toast.error("Please enter your delivery address");
       return;
     }
 
@@ -47,6 +61,7 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
       cart,
       deliveryDate,
       deliveryTime,
+      deliveryMethod,
       total: getTotalPrice(),
     });
 
@@ -102,16 +117,36 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
               </div>
 
               <div>
-                <Label htmlFor="address">Delivery Address *</Label>
-                <Textarea
-                  id="address"
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  placeholder="Enter your complete address"
-                  rows={3}
-                  required
-                />
+                <Label>Delivery Method *</Label>
+                <RadioGroup value={deliveryMethod} onValueChange={(value) => setDeliveryMethod(value as "delivery" | "pickup")}>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="delivery" id="delivery" />
+                    <Label htmlFor="delivery" className="font-normal cursor-pointer">
+                      Livraison (+7 ₱)
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="pickup" id="pickup" />
+                    <Label htmlFor="pickup" className="font-normal cursor-pointer">
+                      Ramassage (Pickup)
+                    </Label>
+                  </div>
+                </RadioGroup>
               </div>
+
+              {deliveryMethod === "delivery" && (
+                <div>
+                  <Label htmlFor="address">Delivery Address *</Label>
+                  <Textarea
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    placeholder="Enter your complete address"
+                    rows={3}
+                    required
+                  />
+                </div>
+              )}
 
               <Button type="submit" className="w-full" size="lg">
                 Place Order - {getTotalPrice()} ₱
@@ -132,8 +167,18 @@ const CheckoutForm = ({ cart, deliveryDate, deliveryTime, onSuccess }: CheckoutF
                   </div>
                 ))}
               </div>
-              <div className="border-t pt-3 mt-3">
-                <div className="flex justify-between text-lg font-bold">
+              <div className="border-t pt-3 mt-3 space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Subtotal</span>
+                  <span className="text-foreground">{getSubtotal()} ₱</span>
+                </div>
+                {deliveryMethod === "delivery" && (
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Livraison</span>
+                    <span className="text-foreground">{DELIVERY_FEE} ₱</span>
+                  </div>
+                )}
+                <div className="flex justify-between text-lg font-bold pt-2 border-t">
                   <span className="text-foreground">Total</span>
                   <span className="text-primary">{getTotalPrice()} ₱</span>
                 </div>
