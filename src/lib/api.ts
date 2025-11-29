@@ -1,5 +1,5 @@
 // src/lib/api.ts (crée ce fichier)
-const API_URL = "http://localhost:5000/api"; // Change en production
+const API_URL = "https://koussaybackend.onrender.com/api"; // Change en production
 
 export const api = {
   getProducts: (category?: string) => 
