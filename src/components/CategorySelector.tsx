@@ -8,8 +8,8 @@ const CategorySelector = ({ onSelectCategory }: CategorySelectorProps) => {
   const categories = [
     {
       id: "Cookies",
-      name: "CHRISTMAS MENU",
-      image: "https://www.freepik.com/premium-photo/autumn-vintage-provence-still-life-with-group-chocolate-raisins-chip-cookies-shot-heather-flowers-old-books-gray-cement-rustic-rural-scenic-background-near-rough-chair-top-view_21868940.htm",
+      name: "Cookies",
+      image: "https://drive.google.com/thumbnail?id=1Inme-yZ0E0bpBzr6dCS8ReWoKkyFRiQT&sz=w1000",
     },
     {
       id: "mini-cookies",
