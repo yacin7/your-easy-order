@@ -7,24 +7,14 @@ interface CategorySelectorProps {
 const CategorySelector = ({ onSelectCategory }: CategorySelectorProps) => {
   const categories = [
     {
-      id: "christmas",
+      id: "Cookies",
       name: "CHRISTMAS MENU",
-      image: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=400&h=300&fit=crop",
+      image: "https://www.freepik.com/premium-photo/autumn-vintage-provence-still-life-with-group-chocolate-raisins-chip-cookies-shot-heather-flowers-old-books-gray-cement-rustic-rural-scenic-background-near-rough-chair-top-view_21868940.htm",
     },
     {
       id: "mini-cookies",
       name: "Mini Cookies",
       image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&h=300&fit=crop",
-    },
-    {
-      id: "same-day",
-      name: "SAME DAY DELIVERY!",
-      image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop",
-    },
-    {
-      id: "gift-sets",
-      name: "Gift Sets",
-      image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&h=300&fit=crop",
     },
     {
       id: "brownies",
